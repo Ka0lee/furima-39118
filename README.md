@@ -35,7 +35,7 @@
 - belongs_to :users
 
 
-##　Shipping_address テーブル
+##　pay_form テーブル
 
 
 | Column        | Type       | Options                       |
@@ -96,7 +96,7 @@
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
 | id        | integer      | null: false                    |
-| name      | string         | null: false                    |
+| name      | string       | null: false                    |
 | item_id   | references   | null: false, foreign_key: true |
 
 ### Association
@@ -114,9 +114,9 @@
 
 ### Association
 
-- had_many :items
+- had_one :items
 
-## shipping_fee_statuses テーブル
+## shipping_fee_status テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
@@ -126,12 +126,12 @@
 
 ### Association
 
-- had_many :items
+- had_one :items
 
 
 
 
-## scheduled_delivery_id テーブル
+## scheduled_delivery テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
@@ -141,11 +141,11 @@
 
 ### Association
 
-- had_many :items
+- had_one :items
 
 
 
-## prefectures テーブル
+## prefecture テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
@@ -155,6 +155,6 @@
 
 ### Association
 
-- had_many :items
+- had_one :items
 
 
