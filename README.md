@@ -2,78 +2,73 @@
 
 ## users テーブル
 
-| Column                   | Type    | Options                   |
-| ------------------------ | ------- | ------------------------- |
-| nickname                 | string  | null: false, unique: true |
-| email                    | string  | null: false, unique: true |
-| encrypted_password       | string  | null: false  unique: true |
-| password_confirmation    | string  | null: false               |
-| last_name                | string  | null: false               |
-| first_name               | string  | null: false               |
-| last_name_kana           | string  | null: false               |
-| first_name_kana          | string  | null: false               |
-| birth_date(1i)           | integer | null: false               |
-| birth_date(2i)           | integer | null: false               |
-| birth_date(2i)           | integer | null: false               |
+| Column                   | Type    | Options       |
+| ------------------------ | ------- | ------------- |
+| nickname                 | string  | null: false,  |
+| email                    | string  | null: false,  |
+| encrypted_password       | string  | null: false   |
+| password_confirmation    | string  | null: false   |
+| last_name                | string  | null: false   |
+| first_name               | string  | null: false   |
+| last_name_kana           | string  | null: false   |
+| first_name_kana          | string  | null: false   |
+| birth_date               | date    | null: false   |
 
 ### Association
 
-- has_many :items dependent: :destroy
-- has_many :orders dependent: :destroy 
+- has_many :items 
+- has_many :orders 
 
 
 ## orders テーブル
 
 | Column    | Type       | Options                       |
 | --------- | ---------- | ----------------------------- |
-| id        | integer    |                               |
-| item_id   | references | null: false,foreign_key: true |
-| user_id   | references | null: false,foreign_key: true |
+| item      | references | null: false,foreign_key: true |
+| user      | references | null: false,foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
+- has_one :item
+- has_one :pay_form
 
 
-##　pay_form テーブル
+## pay_form テーブル
 
 
 | Column        | Type       | Options                       |
 | ------------- | ---------- | ----------------------------- |
-| id            | integer    | null: false                   |
-| postal_code   | integer    | null: false                   |
-| city          | text       | null: false                   |
+| postal_code   | string     | null: false                   |
+| city          | string     | null: false                   |
 | addresses     | string     | null: false                   |
-| prefecture    | text       | null: false                   |
-| buildeing     | text       | null: false                   |
-| phone_number  | integer    | null: false                   |
-| user_id       | references | null: false,foreign_key: true |
-| item_id       | references | null: false,foreign_key: true |
+| prefecture_id | references | null: false,foreign_key: true |
+| buildeing     | string     | null: false                   |
+| phone_number  | string     | null: false                   |
+| orders        | references | null: false,foreign_key: true |
 
 ### Association
 
-- has_one :buyer
+- has_one :order
 
 ## items テーブル
 
 | Column                  | Type       | Options                       |
 | ----------------------- | ---------- | ----------------------------- |
 | name                    | string     | null: false                   |
-| image                   | string     | null: false                   |
 | price                   | integer    | null: false                   |
 | category_id             | references | null: false,foreign_key: true |
 | sales_status_id         | references | null: false,foreign_key: true |
 | shipping_fee_status_id  | references | null: false,foreign_key: true |
 | prefecture_id           | references | null: false,foreign_key: true |
 | scheduled_delivery_id   | references | null: false,foreign_key: true |
-| user_id                 | references | null: false,foreign_key: true |
-| user_id                 | references | null: false,foreign_key: true |
+| user                    | references | null: false,foreign_key: true |
 
 ### Association
 
 - has_many :comments
-- belongs_to :users  
-- has_one :orders
+- belongs_to :user  
+- has_one :order
 
 
 
@@ -88,8 +83,8 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ## categories テーブル
 
