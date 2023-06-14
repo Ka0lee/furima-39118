@@ -42,7 +42,7 @@
 | postal_code   | string     | null: false                   |
 | city          | string     | null: false                   |
 | addresses     | string     | null: false                   |
-| prefecture_id | references | null: false,foreign_key: true |
+| prefecture    | references | null: false,foreign_key: true |
 | buildeing     | string     | null: false                   |
 | phone_number  | string     | null: false                   |
 | orders        | references | null: false,foreign_key: true |
@@ -57,17 +57,24 @@
 | ----------------------- | ---------- | ----------------------------- |
 | name                    | string     | null: false                   |
 | price                   | integer    | null: false                   |
-| category_id             | references | null: false,foreign_key: true |
-| sales_status_id         | references | null: false,foreign_key: true |
-| shipping_fee_status_id  | references | null: false,foreign_key: true |
-| prefecture_id           | references | null: false,foreign_key: true |
-| scheduled_delivery_id   | references | null: false,foreign_key: true |
+| info                    | text       | null: false                   |
+| category                | references | null: false,foreign_key: true |
+| sales_status            | references | null: false,foreign_key: true |
+| shipping_fee_status     | references | null: false,foreign_key: true |
+| prefecture              | references | null: false,foreign_key: true |
+| scheduled_delivery      | references | null: false,foreign_key: true |
 | user                    | references | null: false,foreign_key: true |
+| comment                 | references | null: false,foreign_key: true |
 
 ### Association
 
 - has_many :comments
-- belongs_to :user  
+- belongs_to :user
+- belomgs_to :categories
+- has_one :sales_status
+- has_one :shipping_fee_status
+- has_one :schedules_delivery
+- has_one :prefecture
 - has_one :order
 
 
@@ -76,23 +83,20 @@
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | text      | text         | null: false                    |
-| user_id   | references   | null: false, foreign_key: true |
-| item_id   | references   | null: false, foreign_key: true |
+| user      | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :item
 
 ## categories テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | name      | string       | null: false                    |
-| item_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
@@ -103,36 +107,31 @@
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | status    | string         | null: false                    |
-| item_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
-- had_one :items
+- had_one :item
 
 ## shipping_fee_status テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | ship_day  | integer      | null: false                    |
-| item_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
 - had_one :items
-
-
 
 
 ## scheduled_delivery テーブル
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | day       | integer      | null: false                    |
-| item_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
@@ -144,9 +143,8 @@
 
 | Column    | Type         | Options                        |
 | --------- | ------------ | ------------------------------ |
-| id        | integer      | null: false                    |
 | name      | integer      | null: false                    |
-| item_id   | references   | null: false, foreign_key: true |
+| item      | references   | null: false, foreign_key: true |
 
 ### Association
 
