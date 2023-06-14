@@ -4,8 +4,8 @@
 
 | Column                   | Type    | Options       |
 | ------------------------ | ------- | ------------- |
-| nickname                 | string  | null: false,  |
-| email                    | string  | null: false,  |
+| nickname                 | string  | null: false  |
+| email                    | string  | null: false,unique:true  |
 | encrypted_password       | string  | null: false   |
 | password_confirmation    | string  | null: false   |
 | last_name                | string  | null: false   |
@@ -30,7 +30,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :pay_form
 
 
@@ -42,14 +42,14 @@
 | postal_code   | string     | null: false                   |
 | city          | string     | null: false                   |
 | addresses     | string     | null: false                   |
-| prefecture    | references | null: false,foreign_key: true |
-| buildeing     | string     | null: false                   |
+| prefecture_id | integer    | null: false,foreign_key: true |
+| buildeing     | string     |                               |
 | phone_number  | string     | null: false                   |
-| orders        | references | null: false,foreign_key: true |
+| order         | references | null: false,foreign_key: true |
 
 ### Association
 
-- has_one :order
+- belongs_to :order
 
 ## items テーブル
 
@@ -61,16 +61,15 @@
 | category                | references | null: false,foreign_key: true |
 | sales_status            | references | null: false,foreign_key: true |
 | shipping_fee_status     | references | null: false,foreign_key: true |
-| prefecture              | references | null: false,foreign_key: true |
+| prefecture_id           | integer    | null: false,foreign_key: true |
 | scheduled_delivery      | references | null: false,foreign_key: true |
 | user                    | references | null: false,foreign_key: true |
-| comment                 | references | null: false,foreign_key: true |
 
 ### Association
 
 - has_many :comments
 - belongs_to :user
-- belomgs_to :categories
+- belongs_to :categories
 - has_one :sales_status
 - has_one :shipping_fee_status
 - has_one :schedules_delivery
