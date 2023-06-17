@@ -11,4 +11,5 @@ class User < ApplicationRecord
          validates :birth_date,presence:true
 
 
+         
 end
