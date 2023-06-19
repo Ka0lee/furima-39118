@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
-  
   def index
-     
   end
 
   def new
@@ -14,6 +12,5 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-
   end
 end
