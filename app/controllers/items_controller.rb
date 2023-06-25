@@ -1,16 +1,19 @@
 class ItemsController < ApplicationController
-  #def index
-  #end
+  before_action :authenticate_user!,except:[:index,:show]
 
-  #def new
-  #end
+  def index
+  end
 
-  #def show
-  #end
+  def new
+    @item = Item.new
+  end
 
-  #def create
-  #end
+  def show
+  end
 
-  #def destroy
-  #end
+  def create
+  end
+
+  def destroy
+  end
 end
