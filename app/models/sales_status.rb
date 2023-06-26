@@ -1,8 +1,7 @@
-class SalesStatusId < ActiveHash::Base
+class SalesStatus < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '新品・未使用' },
-    { id: 3, name: 'レディース' },
     { id: 4, name: '未使用に近い' },
     { id: 5, name: '目立った傷や汚れなし' },
     { id: 6, name: 'やや傷や汚れあり' },
