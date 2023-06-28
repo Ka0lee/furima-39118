@@ -1,12 +1,15 @@
 window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price");
-   console.log(priceInput)
+  if (!priceInput){ return false;}
    priceInput.addEventListener("input", () => {
-     const addTaxDom = document.getElementById("add-tax-price");
-     // console.log(priceInput.innerHTML);
-     addTaxDom.innerHTML = Math.round(priceInput.value * 0.1 );
-     const addPofitDom = document.getElementById("profit");
-     // console.log(priceInput.innerHTML);
-     addPofitDom.innerHTML = Math.round(priceInput.value - Math.round(priceInput.value * 0.1 ))
- })
-});
+    const inputValue = priceInput.value;
+    console.log(inputValue);
+    const addTaxDom = document.getElementById("add-tax-price");
+    addTaxDom.innerHTML = Math.round(inputValue * 0.1 );
+     console.log(addTaxDom.innerHTML);
+    const addPofitDom = document.getElementById("profit");
+     addPofitDom.innerHTML = Math.round(inputValue - Math.round(inputValue * 0.1 ))
+     console.log(addPofitDom.innerHTML);
+
+    })
+})
