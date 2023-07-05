@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-      redirect_to new_user_session_path unless @item.user == current_user
+      redirect_to root_path unless @item.user == current_user
   end
 
   def update
