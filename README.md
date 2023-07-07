@@ -40,9 +40,9 @@
 | ------------- | ---------- | ----------------------------- |
 | postal_code   | string     | null: false                   |
 | city          | string     | null: false                   |
-| address     | string     | null: false                   |
+| address       | string     | null: false                   |
 | prefecture_id | integer    | null: false                   |
-| building     | string     |                               |
+| building      | string     |                               |
 | phone_number  | string     | null: false                   |
 | order         | references | null: false,foreign_key: true |
 
