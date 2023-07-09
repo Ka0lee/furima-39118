@@ -1,29 +1,28 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, except: :index
 
   def index
     @order = Order.new
   end
 
-  def create
-    @order = Order.new(order_params)
-    PayForm.create(pay_form_params)
+  def new
+    @order_pay_form = OrderPayForm.new
+  end
 
-    if @order.valid?
-      @order.save
-      return redirect_to root_path
+  def create
+    @order_pay_form = OrderPayForm.new(orderpayform_params)
+    if @order_pay_form.valid?
+      @order_pay_form.save
+      redirect_to root_path
     else
-      render 'index'
+      render :new
     end
   end
 
   private
 
-  def order_params
-    params.require(:order).permit(:price)
-  end
-
-  def pay_form_params
-    params.permit(:postal_code, :prefecture, :city, :house_number, :building_name).merge(order_id: @order.id)
+  def orderpayform_params
+    params.require(:order_pay_form).permit(:postal_code, :prefecture, :city, :address, :phone_number, :building).merge(user_id: current_user.id)
   end
 
 end
