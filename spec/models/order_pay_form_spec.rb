@@ -17,7 +17,6 @@ RSpec.describe OrderPayForm, type: :model do
         @order_pay_form.building = ''
         expect(@order_pay_form).to be_valid
       end
-
       
     end
 
@@ -70,23 +69,16 @@ RSpec.describe OrderPayForm, type: :model do
         expect(@order_pay_form.errors.full_messages).to include("Token can't be blank")
       end
 
-      it 'userが紐付いていないと保存できないこと' do
+      it 'userが紐付いていない(未ログイン状態)と保存できないこと' do
         @order_pay_form.user_id = nil
-        binding.pry
         @order_pay_form.valid?
-        expect(@order_pay_form.user_id.errors.full_messages).to include("User can't be blank")
+        expect(@order_pay_form.errors.full_messages).to include("User can't be blank")
       end
 
       it "売却済みのitemは保存できないこと" do
-        @order_pay_form.item_id != nil
+        @order_pay_form.item_id = nil
         @order_pay_form.valid?
-        expect(@order.errors.full_messages).to include("Token can't be blank")
-      end
-
-      it "未ログインユーザーは商品の保存ができない" do
-        @order_pay_form.user_id.signed_in?
-        @order_pay_form.valid?
-        expect(@order_pay_form.errors.full_messages).to include("Token can't be blank")
+        expect(@order_pay_form.errors.full_messages).to include("Item can't be blank")
       end
     
     end
