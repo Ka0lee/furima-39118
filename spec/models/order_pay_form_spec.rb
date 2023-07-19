@@ -46,6 +46,11 @@ RSpec.describe OrderPayForm, type: :model do
         @order_pay_form.valid?
         expect(@order_pay_form.errors.full_messages).to include("Address can't be blank")
       end
+      it '電話番号(phone_number)が空だと保存できないこと' do
+        @order_pay_form.phone_number = nil
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Phone number can't be blank")
+      end
 
       it '電話番号(phone_number)が10桁未満では保存できないこと' do
         @order_pay_form.phone_number = '100100100'
