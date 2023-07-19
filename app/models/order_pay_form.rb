@@ -19,7 +19,7 @@ class OrderPayForm
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
-    PayForm.create(postal_code: postal_code, prefecture: prefecture, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
+    PayForm.create(postal_code: postal_code, prefecture: prefecture, city: city, address: address, building: building, phone_number: phone_number)
   end
 
 end
