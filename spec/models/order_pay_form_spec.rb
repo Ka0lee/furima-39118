@@ -75,7 +75,7 @@ RSpec.describe OrderPayForm, type: :model do
         expect(@order_pay_form.errors.full_messages).to include("User can't be blank")
       end
 
-      it "売却済みのitemは保存できないこと" do
+      it "itemが紐付いていないと保存できないこと" do
         @order_pay_form.item_id = nil
         @order_pay_form.valid?
         expect(@order_pay_form.errors.full_messages).to include("Item can't be blank")
