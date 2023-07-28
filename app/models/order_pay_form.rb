@@ -15,7 +15,7 @@ class OrderPayForm
 
   end
   
-  validates :prefecture, numericality: {other_than: 1}
+  validates :prefecture, numericality: {other_than: 1, message: "は---以外を選択してください"}
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

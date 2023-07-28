@@ -13,19 +13,19 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :category_id, presence: true, numericality: { other_than: 1, message: "は---以外を選択してください"}
 
   belongs_to :sales_status
-  validates :sales_status_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :sales_status_id, presence: true, numericality: { other_than: 1, message: "は---以外を選択してください"}
 
   belongs_to :shipping_fee_status
-  validates :shipping_fee_status_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_fee_status_id, presence: true, numericality: { other_than: 1, message: "は---以外を選択してください"}
 
   belongs_to :prefecture
-  validates :prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "は---以外を選択してください"}
 
   belongs_to :scheduled_delivery
-  validates :scheduled_delivery_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :scheduled_delivery_id, presence: true, numericality: { other_than: 1 , message: "は---以外を選択してください"}
 
 
 end
