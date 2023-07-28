@@ -31,7 +31,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-I18n.locale = "en"
+#I18n.locale = "en"
 
 
 RSpec.configure do |config|
